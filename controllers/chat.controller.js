@@ -59,6 +59,18 @@ const getMessages = async (req, res) => {
   }
 };
 
+const getSingleUserMessages = async (req, res) => {
+  try {
+    const { senderId } = req.params;
+
+    const data = await Message.find({ sender: senderId });
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.json(400).json(error.message);
+  }
+};
+
 
 
 
@@ -77,4 +89,4 @@ const getMessages = async (req, res) => {
 
 
 
-export {sendMessage , getMessages }
+export {sendMessage , getMessages , getSingleUserMessages }
